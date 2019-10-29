@@ -8,8 +8,6 @@ function NavBar() {
       <div className="navbar-container">
         <div className="nav-logo">YATL</div>
         <div className="nav-menu">
-          <div className="nav-item"><a href="#">My List</a></div>
-          <div className="nav-item">|</div>
           <div className="nav-item" id="navbar-login"><a href="#">Login</a></div>
           <div className="nav-item" id="navbar-signup"><a href="#">Sign Up</a></div>
         </div>
