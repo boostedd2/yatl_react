@@ -76,18 +76,37 @@ const dummy = [
   }
 ]
 
+var todoTitle = ''
+var todoText = ''
+
 
 class TodoList extends Component {
   constructor(props) {
       super(props);
       this.state = {
         dummy,
+        todoTitle,
+        todoText,
       };
 
       this.onCompleted = this.onCompleted.bind(this);
       this.onUndo = this.onUndo.bind(this);
       this.onDismiss = this.onDismiss.bind(this);
       this.onDelete = this.onDelete.bind(this);
+      this.onAddTodo = this.onAddTodo.bind(this);
+  }
+
+  onAddTodo() {
+    const updateList = this.state.dummy
+    const newListID = updateList.filter(function(item) {
+      debugger;
+      var newID = Math.floor((Math.random() * 100) + 1)
+      while (item.id === newID) {
+      var newID = Math.floor((Math.random() * 100) + 1);
+      }
+      return newID
+    })
+    console.log(newListID)
   }
 
   onCompleted(id) {
@@ -100,7 +119,7 @@ class TodoList extends Component {
       return item.id !== id
     })
 
-    var joined = updateList.concat(markComplete)
+    var joined = markComplete.concat(updateList)
 
     this.setState({ dummy: joined })
   }
@@ -132,7 +151,7 @@ class TodoList extends Component {
       return item.id !== id
     })
 
-    var joined = updateList.concat(markDismiss)
+    var joined = markDismiss.concat(updateList)
 
     this.setState({ dummy: joined })
   }
@@ -198,11 +217,23 @@ class TodoList extends Component {
           <h3>Add Todo</h3>
           <form className="search-form">
             <span>Title:</span>
-            <input className="search-box" type="text" placeholder="Todo Title..."/>
+            <input
+              id="add-todo-title"
+              className="search-box"
+              type="text"
+              placeholder="Todo Title..."
+              onChange={event => this.setState({ todoTitle: event.target.value})} 
+            />
             <span>Todo:</span>
-            <input className="search-box" type="text" placeholder="Todo..."/>
+            <input
+              id="add-todo-text"
+              className="search-box"
+              type="text"
+              placeholder="Todo..."
+              onChange={event => this.setState({ todoText: event.target.value})}
+            />
           </form>
-          <button className="addtodo-btn">+ ADD TODO</button>
+          <button className="addtodo-btn" onClick={() => this.onAddTodo()}>+ ADD TODO</button>
 
           <h3>Completed</h3>
           {noneCompleted.length ? noneCompleted.map(item => (
