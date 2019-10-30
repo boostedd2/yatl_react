@@ -1,5 +1,6 @@
 .todo-container {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .todos-list {
@@ -29,6 +30,7 @@
 
 .addtodo-btn {
     background: green;
+    margin: 10px;
     color: white;
     border: none;
     border-radius: 5px;

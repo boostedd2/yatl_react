@@ -1,7 +1,9 @@
 .navbar {
-    background: black;
-    color: white;
+    background: rgb(250, 250, 250);
+    color: black;
     font-size: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
 .navbar-container {
@@ -21,7 +23,7 @@
 }
 .nav-item a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 #navbar-login {
