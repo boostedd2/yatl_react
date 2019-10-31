@@ -9,71 +9,7 @@ const dummy = [
       date: '1/1/1970',
       completed: false,
       expired: false
-  },
-  {
-      id: 2,
-      title: 'Learn state management',
-      body: 'making changes',
-      date: '1/1/1970',
-      completed: false,
-      expired: false
-  },
-  {
-      id: 3,
-      title: 'Learn React',
-      body: 'React workflow is fun',
-      date: '1/1/1970',
-      completed: false,
-      expired: false
-  },
-  {
-      id: 4,
-      title: 'These ones are done',
-      body: 'add some more to the list',
-      date: '1/1/1970',
-      completed: true,
-      expired: false
-  },
-  {
-      id: 5,
-      title: 'Some more completed',
-      body: 'content management works',
-      date: '1/1/1970',
-      completed: true,
-      expired: false
-  },
-  {
-      id: 6,
-      title: 'Give this a try',
-      body: 'try to undo me',
-      date: '1/1/1970',
-      completed: true,
-      expired: false
-  },
-  {
-      id: 7,
-      title: 'Deleted content',
-      body: 'these items have been deleted',
-      date: '1/1/1970',
-      completed: false,
-      expired: true
-  },
-  {
-      id: 8,
-      title: 'removed',
-      body: 'maybe you can undo this?',
-      date: '1/1/1970',
-      completed: false,
-      expired: true
-  },
-  {
-      id: 9,
-      title: 'old stuff',
-      body: 'safe to delete',
-      date: '1/1/1970',
-      completed: false,
-      expired: true
-  }*/
+  },*/
 ]
 
 var todoTitle = ''
@@ -101,6 +37,13 @@ class TodoList extends Component {
     var inTest = true
     var usedId = []
     var newID = ''
+    var today = new Date()
+    const months = { 
+      1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 
+      5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 
+      9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+    }
+    var date = months[(today.getMonth()+1)]+'. '+today.getDate()+', '+today.getFullYear()
     
     for (var i = 0; i < updateList.length; i++) {
       usedId.push(updateList[i].id)
@@ -108,7 +51,7 @@ class TodoList extends Component {
     
     while (inTest) {
       newID = Math.floor((Math.random() * 100) + 1)
-      if (usedId.includes(newID) == false) {
+      if (usedId.includes(newID) === false) {
         inTest = false
       }
     }
@@ -117,7 +60,7 @@ class TodoList extends Component {
         id: newID,
         title: this.state.todoTitle,
         body: this.state.todoText,
-        date: '1/1/1970',
+        date: date,
         completed: false,
         expired: false
       }
@@ -178,9 +121,6 @@ class TodoList extends Component {
   }
 
   onDelete(id) {
-    const markDelete = this.state.dummy.filter(function(item) {
-      return item.id === id
-    })
 
     const updateList = this.state.dummy.filter(function(item) {
       return item.id !== id
@@ -219,7 +159,7 @@ class TodoList extends Component {
     return(
       <div className="todo-container">
         <div className="todos-list">
-          <h1 className="head-title">Yet Another Todo List</h1>
+          <h1 className="head-title">Yet Another To Do List</h1>
 
           <h3>Add Todo</h3>
           <form className="search-form">
@@ -228,7 +168,7 @@ class TodoList extends Component {
               id="add-todo-title"
               className="search-box"
               type="text"
-              placeholder="Todo Title..."
+              placeholder="To Do Title..."
               value={this.state.todoTitle}
               onChange={event => this.setState({ todoTitle: event.target.value})} 
             />
@@ -237,14 +177,14 @@ class TodoList extends Component {
               id="add-todo-text"
               className="search-box"
               type="text"
-              placeholder="Todo..."
+              placeholder="To Do..."
               value={this.state.todoText}
               onChange={event => this.setState({ todoText: event.target.value})}
             />
           </form>
           <button className="addtodo-btn" onClick={() => this.onAddTodo()}>+ ADD TODO</button>
           
-          <h3>Todo</h3>
+          <h3>To Do</h3>
           {completedList.length ? completedList.map(item => (
           <div key={item.id} className="todo-item">
             <div className="todo-contents">
