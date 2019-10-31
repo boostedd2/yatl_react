@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css'
 
 const dummy = [
-  {
+  /*{
       id: 1,
       title: 'Mix with API',
       body: 'Build powerful apps',
@@ -73,7 +73,7 @@ const dummy = [
       date: '1/1/1970',
       completed: false,
       expired: true
-  }
+  }*/
 ]
 
 var todoTitle = ''
@@ -98,15 +98,36 @@ class TodoList extends Component {
 
   onAddTodo() {
     const updateList = this.state.dummy
-    const newListID = updateList.filter(function(item) {
-      debugger;
-      var newID = Math.floor((Math.random() * 100) + 1)
-      while (item.id === newID) {
-      var newID = Math.floor((Math.random() * 100) + 1);
+    var inTest = true
+    var usedId = []
+    var newID = ''
+    
+    for (var i = 0; i < updateList.length; i++) {
+      usedId.push(updateList[i].id)
+    }
+    
+    while (inTest) {
+      newID = Math.floor((Math.random() * 100) + 1)
+      if (usedId.includes(newID) == false) {
+        inTest = false
       }
-      return newID
+    }
+    const newTodo = [
+      {
+        id: newID,
+        title: this.state.todoTitle,
+        body: this.state.todoText,
+        date: '1/1/1970',
+        completed: false,
+        expired: false
+      }
+    ]
+    var joined = newTodo.concat(updateList)
+    this.setState({ 
+      dummy: joined,
+      todoTitle: '',
+      todoText: ''
     })
-    console.log(newListID)
   }
 
   onCompleted(id) {
@@ -222,6 +243,7 @@ class TodoList extends Component {
               className="search-box"
               type="text"
               placeholder="Todo Title..."
+              value={this.state.todoTitle}
               onChange={event => this.setState({ todoTitle: event.target.value})} 
             />
             <span>Todo:</span>
@@ -230,6 +252,7 @@ class TodoList extends Component {
               className="search-box"
               type="text"
               placeholder="Todo..."
+              value={this.state.todoText}
               onChange={event => this.setState({ todoText: event.target.value})}
             />
           </form>
@@ -248,7 +271,7 @@ class TodoList extends Component {
               <button className="todo-dismiss-btn" onClick={() => this.onDismiss(item.id)}>X</button>
             </div>
           </div>)):
-          <div>Looks like you have some work to do...</div>}
+          <div>Good or bad?</div>}
 
           <h3>Deleted</h3>
           {emptyList.length ? emptyList.map(item => (
