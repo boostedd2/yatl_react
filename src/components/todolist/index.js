@@ -220,20 +220,6 @@ class TodoList extends Component {
       <div className="todo-container">
         <div className="todos-list">
           <h1 className="head-title">Yet Another Todo List</h1>
-          <h3>Todo</h3>
-          {completedList.length ? completedList.map(item => (
-          <div key={item.id} className="todo-item">
-            <div className="todo-contents">
-              <div className="todo-title">{item.title}</div>
-              <div className="todo-body">{item.body}</div>
-              <div className="todo-date">{item.date}</div>
-            </div>
-            <div className="todo-btn-container">
-              <button className="todo-complete-btn" onClick={() => this.onCompleted(item.id)}>Done</button>
-              <button className="todo-dismiss-btn" onClick={() => this.onDismiss(item.id)} >X</button>
-            </div>
-          </div>)): 
-          <div>Looks Like you have nothing to do? Congrats!</div>}
 
           <h3>Add Todo</h3>
           <form className="search-form">
@@ -257,6 +243,21 @@ class TodoList extends Component {
             />
           </form>
           <button className="addtodo-btn" onClick={() => this.onAddTodo()}>+ ADD TODO</button>
+          
+          <h3>Todo</h3>
+          {completedList.length ? completedList.map(item => (
+          <div key={item.id} className="todo-item">
+            <div className="todo-contents">
+              <div className="todo-title">{item.title}</div>
+              <div className="todo-body">{item.body}</div>
+              <div className="todo-date">{item.date}</div>
+            </div>
+            <div className="todo-btn-container">
+              <button className="todo-complete-btn" onClick={() => this.onCompleted(item.id)}>Done</button>
+              <button className="todo-dismiss-btn" onClick={() => this.onDismiss(item.id)} >X</button>
+            </div>
+          </div>)): 
+          <div>Looks Like you have nothing to do? Congrats!</div>}
 
           <h3>Completed</h3>
           {noneCompleted.length ? noneCompleted.map(item => (
@@ -271,7 +272,7 @@ class TodoList extends Component {
               <button className="todo-dismiss-btn" onClick={() => this.onDismiss(item.id)}>X</button>
             </div>
           </div>)):
-          <div>Good or bad?</div>}
+          <div>Get to work.</div>}
 
           <h3>Deleted</h3>
           {emptyList.length ? emptyList.map(item => (
