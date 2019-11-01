@@ -65,7 +65,7 @@ class TodoList extends Component {
         expired: false
       }
     ]
-    var joined = newTodo.concat(updateList)
+    var joined = updateList.concat(newTodo)
     this.setState({ 
       dummy: joined,
       todoTitle: '',
@@ -163,26 +163,27 @@ class TodoList extends Component {
 
           <h3>Add Todo</h3>
           <form className="search-form">
-            <span>Title:</span>
+            <span>To Do:</span>
             <input
               id="add-todo-title"
               className="search-box"
               type="text"
-              placeholder="To Do Title..."
+              placeholder="To Do..."
               value={this.state.todoTitle}
               onChange={event => this.setState({ todoTitle: event.target.value})} 
             />
-            <span>Todo:</span>
+            <span>Details:</span>
             <input
               id="add-todo-text"
               className="search-box"
               type="text"
-              placeholder="To Do..."
+              placeholder="(optional)"
               value={this.state.todoText}
               onChange={event => this.setState({ todoText: event.target.value})}
             />
+            <button className="addtodo-btn" onClick={e => (e.preventDefault(), this.onAddTodo())}>+ ADD TODO</button>
           </form>
-          <button className="addtodo-btn" onClick={() => this.onAddTodo()}>+ ADD TODO</button>
+         
           
           <h3>To Do</h3>
           {completedList.length ? completedList.map(item => (

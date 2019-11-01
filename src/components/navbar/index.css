@@ -27,22 +27,22 @@
 }
 
 #navbar-login {
-    border: none;
-    border-radius: 2px;
+    border-right: 1px solid black;
     color: green;
 
 }
 
 #navbar-login:hover {
-    background-color: green;
+    color: green;
+    text-decoration: underline;
 }
 
 #navbar-signup {
-    border: none;
+    border-left: 1px solid black;
     border-radius: 2px;
 }
 
 #navbar-signup:hover {
-    background-color: lightblue;
-    border: none;
+    color: lightblue;
+    text-decoration: underline;
 }
